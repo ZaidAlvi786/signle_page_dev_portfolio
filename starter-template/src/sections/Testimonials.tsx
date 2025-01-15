@@ -3,6 +3,10 @@ import memojiAvatar2 from "@/assets/images/memoji-avatar-2.png";
 import memojiAvatar3 from "@/assets/images/memoji-avatar-3.png";
 import memojiAvatar4 from "@/assets/images/memoji-avatar-4.png";
 import memojiAvatar5 from "@/assets/images/memoji-avatar-5.png";
+import { SectionHeader } from "@/components/SectionHeader";
+import GrainImage from "@/assets/images/grain.jpg"
+import { Card } from "@mantine/core";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -38,5 +42,27 @@ const testimonials = [
 ];
 
 export const TestimonialsSection = () => {
-  return <div>Testimonials Section</div>;
+  return (
+    <div>
+      <SectionHeader
+        eyebrow="Happy Clients"
+        title="What clients say about me"
+        description="Don't just take my word for it. See what my clients have to say about my work."
+      />
+      <div>
+        {testimonials.map((client) => (
+          <Card key={client.name} classNames={{
+            root: "bg-gray-800 rounded-3xl p-6 relative overflow-hidden z-0"
+          }}>
+            <div className="">
+            <Image src={client.avatar} alt={client.name} />
+            <div>{client.name}</div>
+            <div>{client.position}</div>
+            </div>
+            <p>{client.text}</p>
+          </Card>
+        ))}
+      </div>
+    </div>
+  );
 };
