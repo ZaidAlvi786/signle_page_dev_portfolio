@@ -43,25 +43,31 @@ const testimonials = [
 
 export const TestimonialsSection = () => {
   return (
-    <div>
+    <div className="py-16 lg:py-24">
       <SectionHeader
         eyebrow="Happy Clients"
         title="What clients say about me"
         description="Don't just take my word for it. See what my clients have to say about my work."
       />
-      <div>
+      <div className="mt-16 lg:mt-24 flex overflow-x-clip [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <div className="flex gap-8  flex-none">
         {testimonials.map((client) => (
           <Card key={client.name} classNames={{
-            root: "bg-gray-800 rounded-3xl p-6 relative overflow-hidden z-0"
+            root: "bg-gray-800 rounded-3xl p-6 relative overflow-hidden z-0 max-w-xs md:p-8 md:max-w-md" 
           }}>
-            <div className="">
-            <Image src={client.avatar} alt={client.name} />
-            <div>{client.name}</div>
-            <div>{client.position}</div>
+            <div className="flex gap-4 items-center">
+              <div className="size-14 bg-gray-700 inline-flex items-center justify-center rounded-full flex-shrink-0">
+            <Image className="max-h-full" src={client.avatar} alt={client.name} />
             </div>
-            <p>{client.text}</p>
+            <div>
+            <div className="font-semibold">{client.name}</div>
+            <div className="text-sm text-white/40">{client.position}</div>
+            </div>
+            </div>
+            <p className="mt-4 md:mt-6 md:text-base text-sm">{client.text}</p>
           </Card>
         ))}
+        </div>
       </div>
     </div>
   );
